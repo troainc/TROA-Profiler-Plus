@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfilerPlusConfig>
+  <!-- Headless Torch profiler. Edit, save, then run !profilerplusadmin reload in game. -->
+  <Enabled>true</Enabled>
+  <!-- Allowed: 2-300 seconds. Ten seconds is a safe production starting point. -->
+  <SampleIntervalSeconds>10</SampleIntervalSeconds>
+  <!-- Rolling in-memory history retention: 5-10080 minutes. -->
+  <HistoryMinutes>120</HistoryMinutes>
+  <TopGridCount>10</TopGridCount>
+  <MinimumTopGridBlocks>1</MinimumTopGridBlocks>
+  <!-- 1.00 is full simulation speed. -->
+  <SlowSimulationThreshold>0.85</SlowSimulationThreshold>
+  <CriticalSimulationThreshold>0.60</CriticalSimulationThreshold>
+  <CpuWarningPercent>85</CpuWarningPercent>
+  <MemoryWarningMb>12000</MemoryWarningMb>
+  <ConsecutiveAlertSamples>3</ConsecutiveAlertSamples>
+  <AlertCooldownMinutes>15</AlertCooldownMinutes>
+  <EnableCsvHistory>true</EnableCsvHistory>
+  <EnableJsonSnapshots>true</EnableJsonSnapshots>
+  <!-- Leave empty for TROA-ProfilerPlusData inside the plugin storage folder. -->
+  <DataDirectory></DataDirectory>
+  <!-- Optional alert/incident Discord webhook. Paste the full URL and keep it private. -->
+  <EnableDiscordWebhook>false</EnableDiscordWebhook>
+  <DiscordWebhookUrl></DiscordWebhookUrl>
+  <DiscordWebhookName>TROA Profiler+</DiscordWebhookName>
+</ProfilerPlusConfig>
