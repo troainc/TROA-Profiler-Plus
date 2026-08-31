@@ -11,16 +11,51 @@
   <!-- 1.00 is full simulation speed. -->
   <SlowSimulationThreshold>0.85</SlowSimulationThreshold>
   <CriticalSimulationThreshold>0.60</CriticalSimulationThreshold>
+  <HealthySimulationThreshold>0.95</HealthySimulationThreshold>
+  <HighLoadSimulationThreshold>0.80</HighLoadSimulationThreshold>
   <CpuWarningPercent>85</CpuWarningPercent>
   <MemoryWarningMb>12000</MemoryWarningMb>
   <ConsecutiveAlertSamples>3</ConsecutiveAlertSamples>
   <AlertCooldownMinutes>15</AlertCooldownMinutes>
+  <PersistentAlertReminderMinutes>15</PersistentAlertReminderMinutes>
+  <!-- Grid Pressure is estimated and explainable. These are normalization references, not server limits. -->
+  <GridPressureModerate>40</GridPressureModerate>
+  <GridPressureHigh>70</GridPressureHigh>
+  <GridPressureCritical>90</GridPressureCritical>
+  <GridBlocksHigh>20000</GridBlocksHigh>
+  <GridPcuHigh>100000</GridPcuHigh>
+  <GridMechanicalBlocksHigh>30</GridMechanicalBlocksHigh>
+  <GridSubgridsHigh>12</GridSubgridsHigh>
+  <GridScriptsHigh>10</GridScriptsHigh>
+  <GridActiveToolsHigh>30</GridActiveToolsHigh>
+  <GridProductionBlocksHigh>20</GridProductionBlocksHigh>
+  <GridLinearSpeedHigh>50</GridLinearSpeedHigh>
+  <GridAngularSpeedHigh>2</GridAngularSpeedHigh>
   <EnableCsvHistory>true</EnableCsvHistory>
   <EnableJsonSnapshots>true</EnableJsonSnapshots>
   <!-- Leave empty for TROA-ProfilerPlusData inside the plugin storage folder. -->
   <DataDirectory></DataDirectory>
+  <RawHistoryRetainDays>7</RawHistoryRetainDays>
+  <IncidentRetainDays>90</IncidentRetainDays>
+  <SnapshotRetainDays>30</SnapshotRetainDays>
+  <BaselineHours>168</BaselineHours>
+  <SlowCollectorWarningMs>500</SlowCollectorWarningMs>
   <!-- Optional alert/incident Discord webhook. Paste the full URL and keep it private. -->
   <EnableDiscordWebhook>false</EnableDiscordWebhook>
   <DiscordWebhookUrl></DiscordWebhookUrl>
   <DiscordWebhookName>TROA Profiler+</DiscordWebhookName>
+  <!-- Optional specialized destinations. Blank values fall back to DiscordWebhookUrl. -->
+  <DiscordServerHealthWebhookUrl></DiscordServerHealthWebhookUrl>
+  <DiscordPerformanceAlertWebhookUrl></DiscordPerformanceAlertWebhookUrl>
+  <DiscordWorldHealthWebhookUrl></DiscordWorldHealthWebhookUrl>
+  <DiscordAdministrativeWebhookUrl></DiscordAdministrativeWebhookUrl>
+  <DiscordRecoveryAlertsEnabled>true</DiscordRecoveryAlertsEnabled>
+  <DiscordIncludeRecommendations>true</DiscordIncludeRecommendations>
+  <DiscordIncludeConfidence>true</DiscordIncludeConfidence>
+  <DiscordIncludeProgressBars>true</DiscordIncludeProgressBars>
+  <!-- 0 disables scheduled reports. Suggested: 15, 30, 60, 360, or 1440 minutes. -->
+  <DiscordScheduledReportMinutes>0</DiscordScheduledReportMinutes>
+  <DiscordMaximumOffenders>5</DiscordMaximumOffenders>
+  <DiscordTimeoutSeconds>15</DiscordTimeoutSeconds>
+  <DiscordRetryCount>3</DiscordRetryCount>
 </ProfilerPlusConfig>
