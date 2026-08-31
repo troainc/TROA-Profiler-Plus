@@ -1,5 +1,40 @@
 # TROA Profiler+ Changelog
 
+## v1.0.0-alpha.5
+
+### Added
+
+- Adds configurable `Detailed` and `Compact` in-game command layouts with gauges from 5 to 20 segments.
+- Adds persistent incident acknowledgement, administrator notes, manual escalation, and configurable automatic escalation for unacknowledged incidents.
+- Adds save, cleanup, update, and configuration timeline markers with automatic pre-cleanup snapshots for configured Essentials schedules.
+- Adds automatic startup regression markers when the loaded plugin/mod assembly inventory changes.
+- Adds incident workflow and operational-marker Prometheus metrics.
+- Adds an import-ready Grafana dashboard with health, SimSpeed, CPU, grid pressure, incident, timeline, and marker panels.
+- Adds `incident ack`, `incident note`, `incident escalate`, `marker`, and `markers` administrator commands.
+- Packages the Grafana dashboard and fully populated example configuration inside the Torch plugin ZIP.
+
+### Reliability
+
+- Records incident workflow actions in `Incidents.log` and incident JSON archives.
+- Creates named pre-change snapshots for operational markers so administrators can compare before/after conditions.
+- Keeps Essentials support schedule-based and optional, with no hard plugin dependency or invasive runtime patch.
+- Keeps regression markers correlation-based; assembly inventory changes do not claim exact mod CPU attribution.
+
+## v1.0.0-alpha.4
+
+### Added
+
+- Adds a consistent, polished in-game command presentation system for player-facing moderator diagnostics and administrator controls.
+- Adds readable Unicode gauges for health, SimSpeed, CPU, grid pressure, entity pressure, confidence, world health, and diagnostic score breakdowns.
+- Adds visual delta gauges for live comparisons, named snapshot comparisons, and controlled experiments.
+- Adds structured headers, dividers, ranked results, status indicators, metric rows, command menus, and safety footers throughout command output.
+- Keeps the same headless, command-driven design; no client mod or graphical UI is required.
+
+### Coverage
+
+- Applies the presentation system to server status, reports, grids, entities, players, world health, timelines, snapshots, comparisons, incidents, profiler overhead, Discord queue actions, support bundles, and experiments.
+- Adds deterministic command-presentation tests for normalized gauges, unavailable values, delta direction, headers, and Unicode rendering.
+
 ## v1.0.0-alpha.3
 
 - Adds complete reusable Discord gauges with a working `DiscordIncludeProgressBars` switch and `N/A` handling.
