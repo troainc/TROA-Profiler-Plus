@@ -4,9 +4,9 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 
 ## Current Release
 
-- Version: `v1.0.0-alpha.3`
-- Package: `TROA-ProfilerPlus-v1.0.0-alpha.3.zip`
-- SHA-256: `9BBEDEEA39AC819230B93CF203815C4CD1A0CC1EE550036C050ADEA099F5850F`
+- Version: `v1.0.0-alpha.5`
+- Package: `TROA-ProfilerPlus-v1.0.0-alpha.5.zip`
+- SHA-256: `2B10060CFCE042536D83105ACDEBF3096B3122C42ED350B8F709A1243E5DE08D`
 - Runtime: Torch / .NET Framework 4.8
 - Hosting: Windows and Linux-hosted AMP/Wine servers
 - UI: none; all operation is command-, config-, and file-based
@@ -17,6 +17,10 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - Current simulation speed, process CPU, working set, managed memory, process threads, players, entities, grids, and blocks.
 - Explainable estimated grid pressure using motion, mechanical systems, scripts, automation, active tools, production, blocks, and PCU where available.
 - A readable `0-100` health score with Healthy, Warning, High Load, and Critical states.
+- Polished in-game panels and Unicode gauges across diagnostic and administrative commands, including visual status, ranking, and before/after changes without requiring Discord.
+- Configurable compact/detailed command layouts and 5-20 segment in-game gauges.
+- Persistent incident acknowledgement, notes, escalation, operational markers, pre-cleanup snapshots, and update regression markers.
+- Import-ready Grafana dashboard using the local Prometheus metrics file.
 - Rolling in-memory history and configurable retention.
 - Debounced incidents that require consecutive unhealthy samples and respect alert cooldowns.
 - Daily CSV history, latest JSON snapshot, manual rolling CSV exports, local incident log, and diagnostic log.
@@ -77,6 +81,11 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - `!profilerplusadmin supportbundle <minutes>`
 - `!profilerplusadmin experiment start <name>`
 - `!profilerplusadmin experiment end`
+- `!profilerplusadmin incident ack <id> [note]`
+- `!profilerplusadmin incident note <id> <note>`
+- `!profilerplusadmin incident escalate <id> [note]`
+- `!profilerplusadmin marker <save|cleanup|update|config> <detail>`
+- `!profilerplusadmin markers <count>`
 
 ## Build
 
@@ -152,6 +161,14 @@ The build target creates a Torch-ready ZIP containing only `manifest.xml` and `T
 | `EnablePrometheusExport` | `true` | Writes a local Prometheus text file. |
 | `FleetDirectory` | blank | Optional shared cross-server summary directory. |
 | `ServerInstanceName` | `Space Engineers Server` | Display/fleet identity. |
+| `InGameCommandLayout` | `Detailed` | `Detailed` aligned panels or narrower `Compact` output. |
+| `InGameGaugeWidth` | `10` | In-game gauge segments from `5-20`. |
+| `EnableIncidentEscalation` | `true` | Escalates unresolved, unacknowledged incidents. |
+| `IncidentEscalationMinutes` | `30` | Minutes before automatic escalation. |
+| `EnableOperationalCorrelation` | `true` | Enables save/cleanup/update/config timeline markers. |
+| `EssentialsCleanupIntervalMinutes` | `0` | Actual Essentials cleanup interval; `0` disables schedule prediction. |
+| `PreCleanupProfileMinutes` | `10` | Lead time for automatic pre-cleanup capture. |
+| `EnableAutomaticRegressionMarkers` | `true` | Marks loaded assembly inventory changes between startups. |
 
 ## How Diagnostics Work
 
@@ -208,7 +225,7 @@ Use `!profilerplusadmin webhook health`, `top`, `grid`, `player`, or `world` to 
 ## Installation
 
 1. Stop the Torch server.
-2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.3.zip` into Torch's plugin folder.
+2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.5.zip` into Torch's plugin folder.
 3. Start Torch and load the Space Engineers world.
 4. Confirm `TROA-ProfilerPlus.cfg` and `TROA-ProfilerPlusData` are created in plugin storage.
 5. Run `!profilerplusadmin status`.
@@ -229,6 +246,8 @@ Linux-hosted AMP deployments normally run Torch through Wine/Proton-compatible i
 - `Incidents/*-flight.csv`: pre-incident flight-recorder window.
 - `SupportBundles/*.zip`: incident or manual sanitized diagnostic packages.
 - `prometheus.prom`: local metrics for Prometheus-compatible collectors.
+- `OperationalMarkers.log`: save, cleanup, update, and configuration correlation points.
+- `RuntimeFingerprint.state`: private hash used to detect loaded assembly inventory changes between starts.
 
 These files can contain grid names, entity IDs, coordinates, and operational details. Treat them as administrative data and sanitize them before sharing.
 
@@ -253,6 +272,16 @@ Confirmed degradation starts a bounded incident record containing recent samples
 ### Prometheus and Fleet Summaries
 
 `prometheus.prom` is written atomically as a local text exposition file and does not open a network listener. `FleetDirectory` can point multiple server instances at a shared folder; each server writes one small summary JSON for external dashboards or fleet comparisons.
+
+Import `Grafana/TROA-ProfilerPlus-dashboard.json` into Grafana after configuring a Prometheus-compatible collector to scrape or ingest `prometheus.prom`. The supplied dashboard includes server-health, SimSpeed, CPU, grid-pressure, incident-workflow, and operational-marker panels.
+
+### Incident Workflow and Operational Correlation
+
+Administrators can acknowledge incidents, append audited notes, or escalate them by incident ID. Unacknowledged incidents automatically escalate after `IncidentEscalationMinutes` when enabled. Workflow changes are written to `Incidents.log` and incident JSON.
+
+Use `marker save`, `marker cleanup`, `marker update`, or `marker config` immediately before operational changes. Each marker creates a named pre-change snapshot. When `EssentialsCleanupIntervalMinutes` matches the server's real Essentials schedule, TROA Profiler+ automatically creates a pre-cleanup marker and snapshot. This is schedule correlation, not a runtime dependency or invasive Essentials patch.
+
+At startup, the plugin hashes the loaded managed assembly name/version inventory. A changed fingerprint creates an `UPDATE` marker, helping administrators compare performance before and after plugin or mod changes without claiming exact component-level CPU attribution.
 
 ### Profiler Protection
 
