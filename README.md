@@ -4,9 +4,9 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 
 ## Current Release
 
-- Version: `v1.0.0-alpha.2`
-- Package: `TROA-ProfilerPlus-v1.0.0-alpha.2.zip`
-- SHA-256: `40B422822CFEA7FCBCC1F7C8E1ACDE0F5345DDB131B63638D4AB2A9D1113D3CC`
+- Version: `v1.0.0-alpha.3`
+- Package: `TROA-ProfilerPlus-v1.0.0-alpha.3.zip`
+- SHA-256: `9BBEDEEA39AC819230B93CF203815C4CD1A0CC1EE550036C050ADEA099F5850F`
 - Runtime: Torch / .NET Framework 4.8
 - Hosting: Windows and Linux-hosted AMP/Wine servers
 - UI: none; all operation is command-, config-, and file-based
@@ -24,6 +24,11 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - Floating-object, character, voxel/planet entity, total PCU, active tool, production, mechanical, script, and automation observations where current APIs expose them.
 - Optional queued Discord incident, recovery, startup, shutdown, scheduled health, and manual health embeds with retries and HTTP 429 handling.
 - Historical baseline, two-snapshot comparison, bounded retention, and profiler self-overhead diagnostics.
+- Persistent multi-restart baselines, named snapshots, arbitrary named comparisons, and a measured/derived/estimated timeline.
+- Full sampled-grid indexing with rotating detailed analysis, owner/faction/Steam-ID association, subgrids, and pressure subcategories.
+- Player-associated workload and non-destructive world-health diagnostics.
+- Incident flight recording, automatic/manual support bundles, Prometheus text output, and optional shared fleet summaries.
+- Reusable Discord gauges and dedicated embeds for health, grids, players, world health, top pressure, scheduled reports, incidents, recovery, startup, and shutdown.
 - Runtime start, stop, interval adjustment, and safe XML config reload.
 - Moderator read commands and administrator control/export commands.
 - Path-safe storage for Windows and AMP/Wine hosts.
@@ -42,6 +47,13 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - `!profilerplus compare`
 - `!profilerplus baseline`
 - `!profilerplus entities`
+- `!profilerplus players <count>`
+- `!profilerplus player <name-or-id>`
+- `!profilerplus worldhealth`
+- `!profilerplus timeline <minutes>`
+- `!profilerplus snapshot save <name>`
+- `!profilerplus snapshot list`
+- `!profilerplus compare snapshots <first> <second>`
 - `!profilerplus incidents <count>`
 
 ### Administrator
@@ -58,6 +70,13 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - `!profilerplusadmin webhook status`
 - `!profilerplusadmin webhook test`
 - `!profilerplusadmin webhook health`
+- `!profilerplusadmin webhook top`
+- `!profilerplusadmin webhook grid <name-or-id>`
+- `!profilerplusadmin webhook player <name-or-id>`
+- `!profilerplusadmin webhook world`
+- `!profilerplusadmin supportbundle <minutes>`
+- `!profilerplusadmin experiment start <name>`
+- `!profilerplusadmin experiment end`
 
 ## Build
 
@@ -120,6 +139,19 @@ The build target creates a Torch-ready ZIP containing only `manifest.xml` and `T
 | `DiscordMaximumOffenders` | `5` | Maximum contributors shown per embed. |
 | `DiscordTimeoutSeconds` | `15` | Reserved network timeout setting. |
 | `DiscordRetryCount` | `3` | Retries transient failures and rate limits. |
+| `FloatingObjectsCritical` | `2000` | Entity-pressure normalization reference. |
+| `EntitiesCritical` | `10000` | Total-entity pressure normalization reference. |
+| `OwnerlessGridWarningCount` | `100` | Informational world-health threshold. |
+| `TimelinePressureChange` | `15` | Grid-pressure change required for a timeline event. |
+| `MaximumTimelineEventsPerSample` | `25` | Bounds timeline work and storage. |
+| `FlightRecorderMinutesBefore` | `10` | History preserved before an incident. |
+| `FlightRecorderMinutesAfter` | `5` | Reserved post-recovery recording target. |
+| `MaximumDetailedGridsPerSample` | `100` | Rotating detailed-grid budget. |
+| `NormalDetailedAnalysisSeconds` | `60` | Normal detailed-collector interval. |
+| `IncidentDetailedAnalysisSeconds` | `10` | Faster incident detail interval. |
+| `EnablePrometheusExport` | `true` | Writes a local Prometheus text file. |
+| `FleetDirectory` | blank | Optional shared cross-server summary directory. |
+| `ServerInstanceName` | `Space Engineers Server` | Display/fleet identity. |
 
 ## How Diagnostics Work
 
@@ -167,10 +199,16 @@ The current collector counts exposed entities and separately identifies floating
 
 Specialized URLs fall back to `DiscordWebhookUrl`. Discord work is queued away from the simulation thread. Delivery uses timeouts, bounded retry attempts, exponential backoff, `429 Retry-After` handling, payload truncation, disabled mass mentions, and redacted failure messages. Webhook URLs are credentials: never post the config or full URL in logs or support channels.
 
+### Discord Gauges
+
+Normalized values use ten-segment gauges such as `████████░░ 82%`. Set `DiscordIncludeProgressBars` to `false` to display numeric `82/100` values instead. Unavailable or non-normalizable measurements display `N/A`. Gauges are available for server health, grid pressure, physics, entities, scripts, mechanical systems, production, mining, automation, PCU when available, performance impact, and confidence.
+
+Use `!profilerplusadmin webhook health`, `top`, `grid`, `player`, or `world` to preview each report. Scheduled reports include average/minimum SimSpeed and peak process resources from the configured interval.
+
 ## Installation
 
 1. Stop the Torch server.
-2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.2.zip` into Torch's plugin folder.
+2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.3.zip` into Torch's plugin folder.
 3. Start Torch and load the Space Engineers world.
 4. Confirm `TROA-ProfilerPlus.cfg` and `TROA-ProfilerPlusData` are created in plugin storage.
 5. Run `!profilerplusadmin status`.
@@ -186,6 +224,11 @@ Linux-hosted AMP deployments normally run Torch through Wine/Proton-compatible i
 - `Incidents/*.json`: recovered incident evidence and findings.
 - `Exports/*.csv`: manual rolling exports.
 - `Diagnostics.log`: collector, persistence, Discord, and self-overhead warnings.
+- `Timeline.log`: measured, derived, and estimated change events.
+- `Baseline.state`: bounded multi-restart aggregate baseline state.
+- `Incidents/*-flight.csv`: pre-incident flight-recorder window.
+- `SupportBundles/*.zip`: incident or manual sanitized diagnostic packages.
+- `prometheus.prom`: local metrics for Prometheus-compatible collectors.
 
 These files can contain grid names, entity IDs, coordinates, and operational details. Treat them as administrative data and sanitize them before sharing.
 
@@ -195,7 +238,29 @@ Directly measured where available: process CPU, memory, threads, entity/grid/blo
 
 Estimated rather than directly measured: Grid Pressure, Entity Pressure, Performance Impact, confidence, and contributor correlation. Space Engineers/Torch does not provide reliable exact per-grid physics milliseconds, per-grid CPU time, conveyor milliseconds, script milliseconds, voxel-work milliseconds, or proof that one player/grid caused an incident through the APIs used by this release.
 
-Not yet implemented in alpha.2: destructive repair, automatic cleanup, exact corruption repair, a web UI, a WPF UI, deep log-stream world-corruption parsing, persisted multi-day aggregate baselines across restarts, per-player Steam-ID workload reports, exact mod/session-component CPU attribution, or a public REST endpoint. These remain planned only where they can be implemented without inventing measurements or harming SimSpeed.
+Intentionally not implemented: destructive repair, automatic entity/grid deletion, a plugin UI, WPF, an embedded public web server, or claims of exact causation. Exact per-grid CPU/physics/script/conveyor/voxel milliseconds and exact mod/session-component CPU attribution remain unavailable through the safe APIs used here. World health therefore reports evidence visible to the collector and never performs repairs.
+
+## Advanced Operations
+
+### Incident Flight Recorder
+
+Confirmed degradation starts a bounded incident record containing recent samples, SimSpeed, CPU, memory, world counts, floating objects, and pressure categories. Recovery archives findings and builds an incident support ZIP. Persistent incidents use state reminders rather than posting every sample.
+
+### Controlled Experiment Mode
+
+`experiment start` captures a before state. Make one controlled administrative change, wait for additional samples, then use `experiment end`. TROA Profiler+ reports the before/after difference but never disables grids or blocks automatically.
+
+### Prometheus and Fleet Summaries
+
+`prometheus.prom` is written atomically as a local text exposition file and does not open a network listener. `FleetDirectory` can point multiple server instances at a shared folder; each server writes one small summary JSON for external dashboards or fleet comparisons.
+
+### Profiler Protection
+
+Detailed block inspection runs on a slower configurable cadence, rotates through a bounded number of grids, accelerates during incidents, and halves its detail budget after an over-budget collection. The `overhead` command reports process collection, game collection, analysis, persistence, skipped samples, and Discord queue depth.
+
+## Testing
+
+The source repository includes a dependency-free deterministic test harness covering gauge rendering, unavailable values, score caps and explanations, confidence classifications, configuration bounds, and XML configuration round-tripping. Run `dotnet run --project .\Tests\TROA-ProfilerPlus.Tests.csproj -c Release`.
 
 ## Data Safety
 

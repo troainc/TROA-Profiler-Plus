@@ -58,4 +58,21 @@
   <DiscordMaximumOffenders>5</DiscordMaximumOffenders>
   <DiscordTimeoutSeconds>15</DiscordTimeoutSeconds>
   <DiscordRetryCount>3</DiscordRetryCount>
+  <!-- Advanced diagnostics, timelines, bounded flight recording, and collector budgets. -->
+  <FloatingObjectsCritical>2000</FloatingObjectsCritical>
+  <EntitiesCritical>10000</EntitiesCritical>
+  <OwnerlessGridWarningCount>100</OwnerlessGridWarningCount>
+  <TimelinePressureChange>15</TimelinePressureChange>
+  <MaximumTimelineEventsPerSample>25</MaximumTimelineEventsPerSample>
+  <FlightRecorderMinutesBefore>10</FlightRecorderMinutesBefore>
+  <FlightRecorderMinutesAfter>5</FlightRecorderMinutesAfter>
+  <!-- Detailed grid analysis rotates through the world and automatically reduces work after a slow collection. -->
+  <MaximumDetailedGridsPerSample>100</MaximumDetailedGridsPerSample>
+  <NormalDetailedAnalysisSeconds>60</NormalDetailedAnalysisSeconds>
+  <IncidentDetailedAnalysisSeconds>10</IncidentDetailedAnalysisSeconds>
+  <!-- Writes TROA-ProfilerPlusData/prometheus.prom for external collectors. No HTTP listener is opened. -->
+  <EnablePrometheusExport>true</EnablePrometheusExport>
+  <!-- Optional shared directory for cross-server summaries. Leave empty to disable. -->
+  <FleetDirectory></FleetDirectory>
+  <ServerInstanceName>Space Engineers Server</ServerInstanceName>
 </ProfilerPlusConfig>

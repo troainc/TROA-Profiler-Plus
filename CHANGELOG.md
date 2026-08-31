@@ -1,5 +1,17 @@
 # TROA Profiler+ Changelog
 
+## v1.0.0-alpha.3
+
+- Adds complete reusable Discord gauges with a working `DiscordIncludeProgressBars` switch and `N/A` handling.
+- Adds dedicated server-health, grid, player-associated, world-health, top-pressure, scheduled, incident, recovery, startup, and shutdown embeds.
+- Adds full sampled-grid indexing, owner/faction/Steam-ID association where exposed, real physical-group subgrid lookup, and rotating bounded detail collection.
+- Adds Physics, Block Update, PCU, Script, Mechanical, Production, Mining, and Automation pressure subcategories.
+- Adds player-associated workload diagnostics without treating ownership as proof of causation.
+- Adds non-destructive world-health evidence, data-quality labels, historical change timelines, multi-restart baselines, named snapshots, and arbitrary named-snapshot comparison.
+- Adds incident flight records, automatic incident support bundles, manual sanitized support bundles, Prometheus text output, and optional shared fleet summaries.
+- Adds adaptive detailed-analysis intervals, collector rotation, self-budget reduction, persistent-condition reminders, and controlled before/after experiment mode.
+- Adds deterministic tests for gauges, scoring, confidence, configuration bounds, and XML configuration round-tripping.
+
 ## v1.0.0-alpha.2
 
 - Adds explainable `0-100` grid-pressure scoring with centralized configurable thresholds and per-factor evidence.
