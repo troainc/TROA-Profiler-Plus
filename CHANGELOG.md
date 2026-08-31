@@ -1,5 +1,23 @@
 # TROA Profiler+ Changelog
 
+## v1.0.0-alpha.6
+
+### Fixed
+
+- Fixes `grid`, `why`, and administrator Discord grid-report commands only reading the first word of grid names.
+- Adds full grid-name and quoted grid-name parsing through Torch's complete raw command arguments.
+- Adds top-grid rank lookup, so `!profilerplus grid 1` inspects rank `#1` from `topgrids`.
+- Keeps exact entity-ID lookup ahead of rank lookup to avoid ambiguity.
+- Clarifies that block count and PCU are displayed metrics, not valid grid identifiers.
+
+### Commands
+
+- `!profilerplus grid 1`
+- `!profilerplus grid 597 Delta Outpost`
+- `!profilerplus grid "597 Delta Outpost" detailed`
+- `!profilerplus grid 134343396458477310`
+- `!profilerplus why 597 Delta Outpost`
+
 ## v1.0.0-alpha.5
 
 ### Added

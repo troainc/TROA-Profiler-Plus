@@ -4,9 +4,9 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 
 ## Current Release
 
-- Version: `v1.0.0-alpha.5`
-- Package: `TROA-ProfilerPlus-v1.0.0-alpha.5.zip`
-- SHA-256: `2B10060CFCE042536D83105ACDEBF3096B3122C42ED350B8F709A1243E5DE08D`
+- Version: `v1.0.0-alpha.6`
+- Package: `TROA-ProfilerPlus-v1.0.0-alpha.6.zip`
+- SHA-256: `B0FF332504CD6104D4044587881F47615537CB8F34CCF9D170FB6909E9AEA808`
 - Runtime: Torch / .NET Framework 4.8
 - Hosting: Windows and Linux-hosted AMP/Wine servers
 - UI: none; all operation is command-, config-, and file-based
@@ -46,8 +46,8 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - `!profilerplus snapshot`
 - `!profilerplus report <minutes>`
 - `!profilerplus topgrids <count>`
-- `!profilerplus grid <name-or-id> [detailed]`
-- `!profilerplus why <name-or-id>`
+- `!profilerplus grid <rank|full-name|entity-id> [detailed]`
+- `!profilerplus why <rank|full-name|entity-id>`
 - `!profilerplus compare`
 - `!profilerplus baseline`
 - `!profilerplus entities`
@@ -59,6 +59,8 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - `!profilerplus snapshot list`
 - `!profilerplus compare snapshots <first> <second>`
 - `!profilerplus incidents <count>`
+
+Grid inspection accepts a `topgrids` rank, complete grid name, quoted grid name, or entity ID. Examples: `!profilerplus grid 1`, `!profilerplus grid 597 Delta Outpost`, `!profilerplus grid "597 Delta Outpost" detailed`, and `!profilerplus grid 134343396458477310`. The displayed block count and PCU are metrics, not identifiers.
 
 ### Administrator
 
@@ -75,7 +77,7 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - `!profilerplusadmin webhook test`
 - `!profilerplusadmin webhook health`
 - `!profilerplusadmin webhook top`
-- `!profilerplusadmin webhook grid <name-or-id>`
+- `!profilerplusadmin webhook grid <rank|full-name|entity-id>`
 - `!profilerplusadmin webhook player <name-or-id>`
 - `!profilerplusadmin webhook world`
 - `!profilerplusadmin supportbundle <minutes>`
@@ -222,10 +224,22 @@ Normalized values use ten-segment gauges such as `████████░░
 
 Use `!profilerplusadmin webhook health`, `top`, `grid`, `player`, or `world` to preview each report. Scheduled reports include average/minimum SimSpeed and peak process resources from the configured interval.
 
+## Grid Command Troubleshooting
+
+Run `!profilerplus topgrids` first to see the current sampled ranking, grid names, and entity IDs. The `#` number is a temporary rank for the latest sample and can change as server pressure changes.
+
+- Use `!profilerplus grid 1` to inspect the current `#1` ranked grid.
+- Use `!profilerplus grid 597 Delta Outpost` for an unquoted complete name.
+- Use `!profilerplus grid "597 Delta Outpost" detailed` for a quoted name and expanded evidence.
+- Use `!profilerplus grid 134343396458477310` for an exact entity ID.
+- Use the same rank, name, or entity-ID formats with `why` and `profilerplusadmin webhook grid`.
+
+The values shown as `Blocks / PCU / ID` are three different fields. Only the final `ID` value is the persistent grid entity ID. Block count and PCU cannot be used as grid identifiers. When duplicate names exist, use the entity ID to select the exact grid.
+
 ## Installation
 
 1. Stop the Torch server.
-2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.5.zip` into Torch's plugin folder.
+2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.6.zip` into Torch's plugin folder.
 3. Start Torch and load the Space Engineers world.
 4. Confirm `TROA-ProfilerPlus.cfg` and `TROA-ProfilerPlusData` are created in plugin storage.
 5. Run `!profilerplusadmin status`.
