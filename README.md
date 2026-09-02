@@ -4,8 +4,8 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 
 ## Current Release
 
-- Version: `v1.0.0-alpha.6`
-- Package: `TROA-ProfilerPlus-v1.0.0-alpha.6.zip`
+- Version: `v1.0.0-alpha.7`
+- Package: `TROA-ProfilerPlus-v1.0.0-alpha.7.zip`
 - SHA-256: `B0FF332504CD6104D4044587881F47615537CB8F34CCF9D170FB6909E9AEA808`
 - Runtime: Torch / .NET Framework 4.8
 - Hosting: Windows and Linux-hosted AMP/Wine servers
@@ -239,7 +239,7 @@ The values shown as `Blocks / PCU / ID` are three different fields. Only the fin
 ## Installation
 
 1. Stop the Torch server.
-2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.6.zip` into Torch's plugin folder.
+2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.7.zip` into Torch's plugin folder.
 3. Start Torch and load the Space Engineers world.
 4. Confirm `TROA-ProfilerPlus.cfg` and `TROA-ProfilerPlusData` are created in plugin storage.
 5. Run `!profilerplusadmin status`.

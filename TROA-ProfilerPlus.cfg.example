@@ -75,4 +75,16 @@
   <!-- Optional shared directory for cross-server summaries. Leave empty to disable. -->
   <FleetDirectory></FleetDirectory>
   <ServerInstanceName>Space Engineers Server</ServerInstanceName>
+  <!-- Detailed shows aligned labels and dividers. Compact reduces chat width. Gauge width supports 5 through 20. -->
+  <InGameCommandLayout>Detailed</InGameCommandLayout>
+  <InGameGaugeWidth>10</InGameGaugeWidth>
+  <!-- Unacknowledged incidents can automatically escalate and resend the performance alert embed. -->
+  <EnableIncidentEscalation>true</EnableIncidentEscalation>
+  <IncidentEscalationMinutes>30</IncidentEscalationMinutes>
+  <!-- Set the Essentials cleanup interval only when it matches the actual server schedule; 0 disables scheduled markers. -->
+  <EnableOperationalCorrelation>true</EnableOperationalCorrelation>
+  <EssentialsCleanupIntervalMinutes>0</EssentialsCleanupIntervalMinutes>
+  <PreCleanupProfileMinutes>10</PreCleanupProfileMinutes>
+  <!-- Records an UPDATE marker when the loaded plugin/mod assembly inventory changes between starts. -->
+  <EnableAutomaticRegressionMarkers>true</EnableAutomaticRegressionMarkers>
 </ProfilerPlusConfig>

@@ -1,5 +1,14 @@
 # TROA Profiler+ Changelog
 
+## v1.0.0-alpha.7
+
+- Replaces loose runtime-name substring matching with exact Keen block-definition classification for mechanical, script, automation, and AI block families.
+- Splits the combined mechanical count into rotors/hinges, pistons, suspensions, wheels, ship connectors, and landing gear.
+- Updates incident evidence to show the per-family breakdown instead of presenting one ambiguous combined number.
+- Prevents conveyor connectors from being counted as ship connectors and prevents air vents or other `Ai` substring matches from being counted as AI blocks.
+- Adds deterministic classification tests against representative Keen object-builder types and misleading near-match names.
+- Includes the alpha.6 grid-query fixes for ranks, full names, quoted names, entity IDs, and detailed output suffixes.
+
 ## v1.0.0-alpha.6
 
 ### Fixed
