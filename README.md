@@ -4,9 +4,9 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 
 ## Current Release
 
-- Version: `v1.0.0-alpha.7`
-- Package: `TROA-ProfilerPlus-v1.0.0-alpha.7.zip`
-- SHA-256: `B0FF332504CD6104D4044587881F47615537CB8F34CCF9D170FB6909E9AEA808`
+- Version: `v1.0.0-alpha.8`
+- Package: `TROA-ProfilerPlus-v1.0.0-alpha.8.zip`
+- SHA-256: `01564A2D53D7D34DADB9C3E1540DBB83E882CDBCE6E26B948810193374632C77`
 - Runtime: Torch / .NET Framework 4.8
 - Hosting: Windows and Linux-hosted AMP/Wine servers
 - UI: none; all operation is command-, config-, and file-based
@@ -51,6 +51,7 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - `!profilerplus compare`
 - `!profilerplus baseline`
 - `!profilerplus entities`
+- `!profilerplus physics <count>` — physics-load hotspots (moving mass, spin, joints, subgrids)
 - `!profilerplus players <count>`
 - `!profilerplus player <name-or-id>`
 - `!profilerplus worldhealth`
@@ -80,6 +81,10 @@ Grid inspection accepts a `topgrids` rank, complete grid name, quoted grid name,
 - `!profilerplusadmin webhook grid <rank|full-name|entity-id>`
 - `!profilerplusadmin webhook player <name-or-id>`
 - `!profilerplusadmin webhook world`
+- `!profilerplusadmin webhook physics` — physics-hotspots gauges
+- `!profilerplusadmin webhook timeline <minutes>` — recent change timeline
+- `!profilerplusadmin webhook overhead` — profiler self-monitoring
+- `!profilerplusadmin webhook digest` — combined server digest with SimSpeed trend
 - `!profilerplusadmin supportbundle <minutes>`
 - `!profilerplusadmin experiment start <name>`
 - `!profilerplusadmin experiment end`
@@ -127,6 +132,7 @@ The build target creates a Torch-ready ZIP containing only `manifest.xml` and `T
 | `GridProductionBlocksHigh` | `20` | Active production normalization reference. |
 | `GridLinearSpeedHigh` | `50` | Linear-motion normalization reference in m/s. |
 | `GridAngularSpeedHigh` | `2` | Angular-motion normalization reference in rad/s. |
+| `GridMovingMassHigh` | `100000000` | Physics-load reference: moving mass (mass × speed) in kg·m/s treated as high pressure. |
 | `EnableCsvHistory` | `true` | Writes daily CSV history. |
 | `EnableJsonSnapshots` | `true` | Writes the latest JSON snapshot. |
 | `DataDirectory` | blank | Blank uses `TROA-ProfilerPlusData`. |
@@ -171,6 +177,9 @@ The build target creates a Torch-ready ZIP containing only `manifest.xml` and `T
 | `EssentialsCleanupIntervalMinutes` | `0` | Actual Essentials cleanup interval; `0` disables schedule prediction. |
 | `PreCleanupProfileMinutes` | `10` | Lead time for automatic pre-cleanup capture. |
 | `EnableAutomaticRegressionMarkers` | `true` | Marks loaded assembly inventory changes between startups. |
+| `EnableBaselineDeviationAlerts` | `false` | Opt-in: raise a debounced incident when SimSpeed falls far below the learned adaptive baseline. |
+| `BaselineSimSpeedDeviationPercent` | `25` | How far below baseline SimSpeed must fall (percent) before a deviation alert. |
+| `BaselineMinimumSamples` | `30` | Minimum learned samples before deviation alerts are considered. |
 
 ## How Diagnostics Work
 

@@ -1,5 +1,27 @@
 # TROA Profiler+ Changelog
 
+## v1.0.0-alpha.8
+
+### Physics
+
+- Rebuilds grid physics pressure as a real composite of Havok load drivers (moving mass, angular velocity, joints/constraints, subgrids, awake state) instead of the previous velocity-only score that read ~0 on typical servers.
+- Reads physics values straight from the real Space Engineers physics body (`MyGridPhysics`) as strongly-typed members — `Speed`, `Mass`, and `IsActive` — so they match what the game simulates in-game.
+- Adds a `!profilerplus physics` command, a Physics Pressure gauge on the status panel, `troa_profiler_active_physics_grids` / `_moving_mass_kg` / `_high_angular_velocity_grids` Prometheus metrics, Grafana panels, and a polished Physics Hotspots Discord embed with parity to the other cards.
+
+### Discord
+
+- Embeds gain a server author bar, unicode sparkline trends, vs-baseline deltas, and owner/faction/GPS detail; correct JSON escaping (all control characters) prevents malformed payloads from unusual grid names.
+- Full webhook coverage: `webhook physics`, `webhook timeline`, `webhook overhead`, and a combined `webhook digest`, all preserving mention hygiene, retry/429/timeout, payload bounds, and never logging the webhook URL.
+
+### Reliability and performance
+
+- Caches hot-path reflection (resolve members once per type) to reduce the profiler's own CPU/GC footprint and protect SimSpeed.
+- Isolates each persistence writer so a transient disk error no longer aborts a sample or suppresses alerting.
+
+### Diagnostics
+
+- Replaces the never-decaying cumulative baseline with an exponentially-weighted adaptive baseline that tracks recent-normal, plus opt-in deviation alerts when SimSpeed falls below the learned baseline.
+
 ## v1.0.0-alpha.7
 
 - Replaces loose runtime-name substring matching with exact Keen block-definition classification for mechanical, script, automation, and AI block families.

@@ -31,6 +31,8 @@
   <GridProductionBlocksHigh>20</GridProductionBlocksHigh>
   <GridLinearSpeedHigh>50</GridLinearSpeedHigh>
   <GridAngularSpeedHigh>2</GridAngularSpeedHigh>
+  <!-- Physics load reference: moving mass in kg*m/s (mass x speed) treated as high pressure. -->
+  <GridMovingMassHigh>100000000</GridMovingMassHigh>
   <EnableCsvHistory>true</EnableCsvHistory>
   <EnableJsonSnapshots>true</EnableJsonSnapshots>
   <!-- Leave empty for TROA-ProfilerPlusData inside the plugin storage folder. -->
@@ -87,4 +89,9 @@
   <PreCleanupProfileMinutes>10</PreCleanupProfileMinutes>
   <!-- Records an UPDATE marker when the loaded plugin/mod assembly inventory changes between starts. -->
   <EnableAutomaticRegressionMarkers>true</EnableAutomaticRegressionMarkers>
+  <!-- Adaptive baseline deviation alerts. The baseline is a decaying average of recent normal. -->
+  <!-- Opt-in: raise a debounced incident when SimSpeed falls this far below the learned baseline. -->
+  <EnableBaselineDeviationAlerts>false</EnableBaselineDeviationAlerts>
+  <BaselineSimSpeedDeviationPercent>25</BaselineSimSpeedDeviationPercent>
+  <BaselineMinimumSamples>30</BaselineMinimumSamples>
 </ProfilerPlusConfig>
