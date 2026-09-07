@@ -37,6 +37,59 @@ TROA Profiler+ is a new headless Torch performance-intelligence plugin for Space
 - Moderator read commands and administrator control/export commands.
 - Path-safe storage for Windows and AMP/Wine hosts.
 
+## How to Use TROA Profiler+
+
+TROA Profiler+ is **headless** — there is no in-game window. You drive it with chat commands, a config file, and (optionally) Discord and Grafana. Moderator commands (`!profilerplus …`) are read-only diagnostics; administrator commands (`!profilerplusadmin …`) control the service, Discord, exports, and incidents. Both require the matching Torch promote level. Commands work in in-game chat and in the Torch console.
+
+### 1. Install and confirm it is running
+
+1. Stop Torch, drop the release zip into Torch's plugin folder, restart, and load your world.
+2. Run `!profilerplusadmin status` — shows the sampler state, sample interval, and Discord status.
+3. Wait one sample interval (default 10s), then run `!profilerplus status` for a live health panel.
+
+### 2. Read server health at a glance
+
+- `!profilerplus status` — health score, SimSpeed, CPU, grid/physics/entity pressure, players, grids, blocks.
+- `!profilerplus report 60` — rolling averages and minimums over the last 60 minutes.
+- `!profilerplus baseline` — the learned "normal" for your server (adaptive; decays toward recent behavior).
+
+### 3. Find what is stressing the server
+
+- `!profilerplus topgrids 10` — highest-pressure grids, ranked.
+- `!profilerplus physics 5` — physics-load hotspots (moving mass, spin, joints, subgrids) with GPS.
+- `!profilerplus grid <rank | name | "quoted name" | entityId> [detailed]` — full breakdown of one grid.
+- `!profilerplus why <grid>` — plain-language explanation of a grid's pressure score.
+- `!profilerplus players 10` / `!profilerplus player <name>` — workload associated with a player's grids.
+- `!profilerplus entities` — entity and floating-object pressure.
+
+Pressure scores are **estimated indicators, not proof of causation**. To confirm a suspect, use `!profilerplusadmin experiment start <name>`, make one change, then `!profilerplusadmin experiment end` to compare SimSpeed before and after.
+
+### 4. Handle incidents
+
+When SimSpeed stays low for several consecutive samples, Profiler+ opens a debounced incident (respecting the alert cooldown) and writes a flight recorder around it.
+
+- `!profilerplus incidents 5` — recent incidents.
+- `!profilerplusadmin incident ack <id> [note]` · `incident note <id> <note>` · `incident escalate <id>`.
+- Set `EnableBaselineDeviationAlerts` to also alert when SimSpeed falls below the learned baseline, not just a fixed threshold.
+
+### 5. (Optional) Send everything to Discord
+
+1. Create a Discord channel webhook, paste the full URL into `DiscordWebhookUrl` in `TROA-ProfilerPlus.cfg`, and set `EnableDiscordWebhook` to `true`.
+2. Run `!profilerplusadmin reload`, then `!profilerplusadmin webhook test`.
+3. Push any card on demand: `webhook health`, `webhook top`, `webhook physics`, `webhook grid <grid>`, `webhook player <p>`, `webhook world`, `webhook timeline`, `webhook overhead`, `webhook digest`.
+4. Set `DiscordScheduledReportMinutes` for automatic periodic health reports.
+
+The webhook URL is never displayed, logged, or placed in support bundles.
+
+### 6. (Optional) Dashboards and exports
+
+- Prometheus: a local `prometheus.prom` file is written each sample (no HTTP server is opened) — point a Prometheus textfile collector at it and import `Grafana/TROA-ProfilerPlus-dashboard.json`.
+- `!profilerplus export <minutes>` writes a CSV; `!profilerplusadmin supportbundle <minutes>` builds a sanitized diagnostic ZIP.
+
+### Tuning
+
+Edit `TROA-ProfilerPlus.cfg` in plugin storage and run `!profilerplusadmin reload` to apply changes without a restart. Common knobs: `SampleIntervalSeconds`; thresholds (`SlowSimulationThreshold`, `CpuWarningPercent`, `MemoryWarningMb`); grid references (`GridBlocksHigh`, `GridMovingMassHigh`, …); and presentation (`InGameCommandLayout`, `InGameGaugeWidth`). Full list in the Configuration Reference below.
+
 ## Commands
 
 ### Moderator
@@ -248,7 +301,7 @@ The values shown as `Blocks / PCU / ID` are three different fields. Only the fin
 ## Installation
 
 1. Stop the Torch server.
-2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.7.zip` into Torch's plugin folder.
+2. Copy `TROA-ProfilerPlus-v1.0.0-alpha.8.zip` into Torch's plugin folder.
 3. Start Torch and load the Space Engineers world.
 4. Confirm `TROA-ProfilerPlus.cfg` and `TROA-ProfilerPlusData` are created in plugin storage.
 5. Run `!profilerplusadmin status`.
