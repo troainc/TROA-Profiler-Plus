@@ -1,5 +1,20 @@
 # TROA Profiler+ Changelog
 
+## Unreleased — v1.0.0-alpha.9 (in development)
+
+> Not yet built or shipped. Source PR: `troainc/TROA-Profiler-Plus-Closed#1`.
+> ⚠️ That PR is based on the **alpha.7** source (the only source currently in the closed repo). The
+> alpha.8 physics-pressure rework listed below is **not** in that source, so the alpha.9 branch must be
+> reconciled with the real alpha.8 source before an alpha.9 build is published, or it will regress alpha.8.
+
+- **Estimated physics clusters** — `!profilerplus physics <count>` groups grids into proximity-based
+  physics islands with estimated per-cluster ms/frame share, moving mass, and GPS; `physics inspect
+  <index>` lists a cluster's grids; admin `physics takeme <index>` teleports to a cluster.
+- **Opt-in real per-cluster timing** scaffold (`EnablePhysicsClusterTiming`), disabled and fail-closed.
+- **Universal command webhook mirror** (`EnableCommandWebhookMirror` / `webhook mirror on|off`) posts every
+  command result to Discord as an embed, plus dedicated embeds/`webhook` subcommands for report, incidents,
+  entities, players, timeline, baseline, compare, overhead, physics, and digest.
+
 ## v1.0.0-alpha.8
 
 ### Physics
