@@ -36,6 +36,7 @@ See the complete [command reference](COMMANDS.md) for every moderator and admini
 - `!profilerplus compare windows 30 30` — compares the preceding 30-minute window with the most recent 30-minute window, ranks the largest average changes, and flags unfavorable movement as a regression. It is correlation, not proof that a mod or config caused the change.
 - `!profilerplus export 60` — local CSV export.
 - `!profilerplusadmin webhook mirror on` — mirror command panels to Discord when webhooks are configured.
+- `!profilerplusadmin network clients [count]` — explicit local-only sensitive endpoint list; it is intentionally never mirrored to Discord or written to data files.
 - `!profilerplusadmin supportbundle 60` — create a sanitized local support bundle.
 
 ## Discord and privacy

@@ -45,6 +45,7 @@ Commands run in in-game chat or the Torch console. `!profilerplus` commands are 
 | `!profilerplusadmin reload` | Validate and reload `TROA-ProfilerPlus.cfg`. |
 | `!profilerplusadmin interval <seconds>` | Set the sampling interval within the supported range. |
 | `!profilerplusadmin physics takeme <index>` | Best-effort teleport to the centre of an estimated physics cluster. |
+| !profilerplusadmin network clients [count] | Sensitive local-only client endpoint/IP list. Requires EnableSensitiveClientNetworkDiagnostics=true; never mirrored to Discord, logged, exported, bundled, or retained. |
 | `!profilerplusadmin supportbundle [minutes]` | Create a sanitized local support ZIP. Review it before sharing because world metrics may be sensitive. |
 
 ## Administrator Discord controls
@@ -70,8 +71,8 @@ Configure `EnableDiscordWebhook` and a private webhook URL first. `webhook mirro
 | `!profilerplusadmin webhook compare` | Queue the latest two-sample comparison embed. |
 | `!profilerplusadmin webhook overhead` | Queue a profiler-overhead embed. |
 | `!profilerplusadmin webhook physics [count]` | Queue an estimated physics-cluster embed. |
-| !profilerplusadmin webhook network | Queue the aggregate network-health embed. It excludes endpoint and IP data. |
-| !profilerplusadmin webhook fleet | Queue the sanitized shared-folder fleet-health embed. |
+| `!profilerplusadmin webhook network` | Queue the aggregate network-health embed. It excludes endpoint and IP data. |
+| `!profilerplusadmin webhook fleet` | Queue the sanitized shared-folder fleet-health embed. |
 | `!profilerplusadmin webhook digest` | Queue a combined server-digest embed. |
 
 ## Administrator incident and correlation controls
