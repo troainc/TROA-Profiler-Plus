@@ -70,6 +70,8 @@ Configure `EnableDiscordWebhook` and a private webhook URL first. `webhook mirro
 | `!profilerplusadmin webhook compare` | Queue the latest two-sample comparison embed. |
 | `!profilerplusadmin webhook overhead` | Queue a profiler-overhead embed. |
 | `!profilerplusadmin webhook physics [count]` | Queue an estimated physics-cluster embed. |
+| !profilerplusadmin webhook network | Queue the aggregate network-health embed. It excludes endpoint and IP data. |
+| !profilerplusadmin webhook fleet | Queue the sanitized shared-folder fleet-health embed. |
 | `!profilerplusadmin webhook digest` | Queue a combined server-digest embed. |
 
 ## Administrator incident and correlation controls

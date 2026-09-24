@@ -9,6 +9,11 @@
 - Flags unfavorable movement as a regression while explicitly stating that correlation does not prove a mod, configuration, or player caused the change.
 - Uses the existing opt-in command-webhook mirror, so the same sanitized command panel can be delivered to Discord.
 
+### Network and fleet command delivery
+
+- !profilerplus network and !profilerplus fleet now return readable setup/status panels, including when instrumentation or shared summaries are not ready; normal command-webhook mirroring can deliver those panels.
+- Adds dedicated !profilerplusadmin webhook network and !profilerplusadmin webhook fleet embeds. The network embed remains aggregate-only and excludes endpoint/IP data.
+
 ### Public distribution cleanup
 
 - Public repository is documentation/configuration only; private implementation details and unvalidated binaries are excluded.
