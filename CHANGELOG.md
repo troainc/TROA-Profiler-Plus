@@ -2,6 +2,9 @@
 
 ## v1.0.0-alpha.21
 
+- Clarifies the distribution and proprietary-source policy: validated ZIPs may be provided for server operation, but source code and TROA internal frameworks are not released.
+
+
 - Documents customizable resource webhooks with trailing minutes, count, title, note, and fresh-sample controls.
 - Documents the supported grid, player, entity, physics, timeline, tick, fleet, network, and health resource panels.
 

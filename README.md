@@ -4,8 +4,15 @@ TROA Profiler+ is a headless Torch performance-diagnostics plugin for Space Engi
 
 ## Current public status
 
-The current documented build is **v1.0.0-alpha.18**. This repository intentionally contains only public operator documentation, a credential-free configuration example, and GitHub issue metadata. Source code and unverified binaries are not published here.
+The current documented build is **v1.0.0-alpha.21**. This repository intentionally contains only public operator documentation, a credential-free configuration example, and GitHub issue metadata. Source code and unverified binaries are not published here.
 
+## Release ZIP distribution and proprietary technology
+
+TROA may provide validated, versioned Profiler+ release ZIPs to server operators through approved distribution channels. These ZIPs are binary release packages for installation and operation only; they are not source-code releases.
+
+Profiler+ source code, internal frameworks, tooling, build systems, implementation methods, and related TROA intellectual property are proprietary and remain exclusively owned by TROA. They are not included in a release ZIP or this public repository. Receiving or using a release ZIP does not grant source access or permission to copy, publish, modify, reverse engineer, decompile, derive from, or redistribute TROA proprietary technology without prior written authorization from TROA.
+
+For source access, integrations, redistribution, or commercial-use questions, contact TROA. Please use only validated, unmodified ZIPs supplied or approved by TROA.
 ## What it provides
 
 - Interval sampling of SimSpeed, process resources, entity/grid/block counts, and exposed world state.
