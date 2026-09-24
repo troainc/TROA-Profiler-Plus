@@ -31,8 +31,6 @@
   <GridProductionBlocksHigh>20</GridProductionBlocksHigh>
   <GridLinearSpeedHigh>50</GridLinearSpeedHigh>
   <GridAngularSpeedHigh>2</GridAngularSpeedHigh>
-  <!-- Physics load reference: moving mass in kg*m/s (mass x speed) treated as high pressure. -->
-  <GridMovingMassHigh>100000000</GridMovingMassHigh>
   <EnableCsvHistory>true</EnableCsvHistory>
   <EnableJsonSnapshots>true</EnableJsonSnapshots>
   <!-- Leave empty for TROA-ProfilerPlusData inside the plugin storage folder. -->
@@ -41,6 +39,12 @@
   <IncidentRetainDays>90</IncidentRetainDays>
   <SnapshotRetainDays>30</SnapshotRetainDays>
   <BaselineHours>168</BaselineHours>
+  <!-- Disabled by default. Learns healthy samples by UTC day/hour and alerts on material deviation from that bucket. -->
+  <EnableAdaptiveBaselines>false</EnableAdaptiveBaselines>
+  <!-- Matching healthy samples required before evaluation (3-1000). -->
+  <AdaptiveBaselineMinimumSamples>12</AdaptiveBaselineMinimumSamples>
+  <!-- Deviation percent for SimSpeed drop or CPU/memory increase (5-500). -->
+  <AdaptiveBaselineDeviationPercent>25</AdaptiveBaselineDeviationPercent>
   <SlowCollectorWarningMs>500</SlowCollectorWarningMs>
   <!-- Optional alert/incident Discord webhook. Paste the full URL and keep it private. -->
   <EnableDiscordWebhook>false</EnableDiscordWebhook>
@@ -70,9 +74,15 @@
   <FlightRecorderMinutesAfter>5</FlightRecorderMinutesAfter>
   <!-- Detailed grid analysis rotates through the world and automatically reduces work after a slow collection. -->
   <MaximumDetailedGridsPerSample>100</MaximumDetailedGridsPerSample>
+  <!-- Opt-in bounded block-type pressure evidence; this is categorization, not measured per-block CPU. -->
+  <EnableBlockTypePressureInstrumentation>false</EnableBlockTypePressureInstrumentation>
   <NormalDetailedAnalysisSeconds>60</NormalDetailedAnalysisSeconds>
   <IncidentDetailedAnalysisSeconds>10</IncidentDetailedAnalysisSeconds>
   <!-- Writes TROA-ProfilerPlusData/prometheus.prom for external collectors. No HTTP listener is opened. -->
+  <!-- Opt-in aggregate-only replication counters. No endpoints, IP addresses, or packet inspection. -->
+  <EnableNetworkHealthInstrumentation>false</EnableNetworkHealthInstrumentation>
+  <!-- Opt-in loaded assembly inventory only; it does not measure per-component CPU or update-handler cost. -->
+  <EnableComponentInventory>false</EnableComponentInventory>
   <EnablePrometheusExport>true</EnablePrometheusExport>
   <!-- Optional shared directory for cross-server summaries. Leave empty to disable. -->
   <FleetDirectory></FleetDirectory>
@@ -89,9 +99,16 @@
   <PreCleanupProfileMinutes>10</PreCleanupProfileMinutes>
   <!-- Records an UPDATE marker when the loaded plugin/mod assembly inventory changes between starts. -->
   <EnableAutomaticRegressionMarkers>true</EnableAutomaticRegressionMarkers>
-  <!-- Adaptive baseline deviation alerts. The baseline is a decaying average of recent normal. -->
-  <!-- Opt-in: raise a debounced incident when SimSpeed falls this far below the learned baseline. -->
-  <EnableBaselineDeviationAlerts>false</EnableBaselineDeviationAlerts>
-  <BaselineSimSpeedDeviationPercent>25</BaselineSimSpeedDeviationPercent>
-  <BaselineMinimumSamples>30</BaselineMinimumSamples>
+  <!-- Universal command webhook mirror: when true, every !profilerplus/!profilerplusadmin command result is also posted to Discord as an embed. Toggle in game with !profilerplusadmin webhook mirror on|off. -->
+  <EnableCommandWebhookMirror>false</EnableCommandWebhookMirror>
+  <!-- Optional dedicated destination for mirrored command output. Blank falls back to DiscordAdministrativeWebhookUrl, then DiscordWebhookUrl. -->
+  <DiscordCommandWebhookUrl></DiscordCommandWebhookUrl>
+  <!-- Physics clusters (estimated). Proximity radius in metres used to group grids into estimated physics islands (100-500000). -->
+  <PhysicsClusterRadiusMeters>5000</PhysicsClusterRadiusMeters>
+  <!-- Minimum grids for a cluster to be listed (1-50). -->
+  <PhysicsClusterMinGrids>1</PhysicsClusterMinGrids>
+  <!-- Assumed physics frame budget in ms used ONLY to distribute the estimated per-cluster ms/frame. This is not a measurement (0.1-16.6). -->
+  <PhysicsAssumedFrameBudgetMs>5.0</PhysicsAssumedFrameBudgetMs>
+  <!-- Opt-in real per-cluster timing. Reserved: this estimate-only release has no timing probe, so it fails closed to estimates. -->
+  <EnablePhysicsClusterTiming>false</EnablePhysicsClusterTiming>
 </ProfilerPlusConfig>
