@@ -1,13 +1,13 @@
 # TROA Profiler+ command reference
 
-Commands run in in-game chat or the Torch console. `!profilerplus` commands are read-only moderator diagnostics unless noted. `!profilerplusadmin` commands require an administrator promote level. Values described as estimated or correlated are not proof of causation.
+Commands run in in-game chat or the Torch console. `!profilerplus` commands are read-only moderator diagnostics unless noted. `!profilerplusadmin` commands require an administrator promote level. Values described as estimated or correlated are not proof of causation.`n`n## Webhook delivery`n`nSet `EnableCommandWebhookMirror=true` or run `!profilerplusadmin webhook mirror on` to mirror every ordinary command panel to Discord. Use the dedicated `webhook <report>` commands for an on-demand report embed. Local filesystem paths from `export` and `data` are never sent to Discord; those commands mirror only safe status panels. `network clients` is the sole command intentionally excluded because it can show client IP addresses.
 
 ## Moderator commands
 
 | Command | Purpose |
 |---|---|
 | `!profilerplus help` | Show the command menu. |
-| `!profilerplus status` | Show current health, SimSpeed, derived TPS (SimSpeed × 60), process resources, pressure indicators, and world counts. |
+| `!profilerplus status` | Show current health, SimSpeed, derived TPS (SimSpeed × 60; derived, not an engine tick counter), process resources, pressure indicators, and world counts. |
 | `!profilerplus snapshot` | Capture and display a fresh sample. |
 | `!profilerplus report [minutes]` | Show a rolling health report. |
 | `!profilerplus topgrids [count]` | Rank sampled grids by estimated pressure. |
@@ -45,7 +45,7 @@ Commands run in in-game chat or the Torch console. `!profilerplus` commands are 
 | `!profilerplusadmin reload` | Validate and reload `TROA-ProfilerPlus.cfg`. |
 | `!profilerplusadmin interval <seconds>` | Set the sampling interval within the supported range. |
 | `!profilerplusadmin physics takeme <index>` | Best-effort teleport to the centre of an estimated physics cluster. |
-| !profilerplusadmin network clients [count] | Sensitive local-only client endpoint/IP list. Requires EnableSensitiveClientNetworkDiagnostics=true; never mirrored to Discord, logged, exported, bundled, or retained. |
+| `!profilerplusadmin network clients [count]` | Sensitive local-only client endpoint/IP list. Requires `EnableSensitiveClientNetworkDiagnostics=true`; never mirrored to Discord, logged, exported, bundled, or retained. |
 | `!profilerplusadmin supportbundle [minutes]` | Create a sanitized local support ZIP. Review it before sharing because world metrics may be sensitive. |
 
 ## Administrator Discord controls
