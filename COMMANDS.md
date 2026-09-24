@@ -33,6 +33,37 @@ Examples to save:
 
 After saving one, use `!profilerplusadmin webhook command TopGrid` to post it to Discord for the admin team to copy. References persist in the local config and can also be maintained in the `SavedCommandReferences` section of `TROA-ProfilerPlus.cfg`.
 
+## Custom resource webhook builder
+
+Use one flexible command when operators want to attach context and request size/time controls to a Discord panel:
+
+```text
+!profilerplusadmin webhook resource <type> [selector] [--minutes N] [--count N] [--title "text"] [--note "text"] [--fresh]
+```
+
+Supported types: `tick`, `status`, `report`, `topgrids`, `grid`, `why`, `player`, `players`, `entities`, `physics`, `timeline`, `baseline`, `compare`, `incidents`, `network`, `fleet`, and `overhead`.
+
+| Option | Effect |
+|---|---|
+| `--minutes N` | Retained-history window for report, timeline, and similar time-based resources. |
+| `--count N` | Limit listed grids, players, physics clusters, incidents, fleet rows, or timeline events. |
+| `--title "text"` | Replace the Discord embed title with an operator label. |
+| `--note "text"` | Append operator context to the embed, for example a mod-change or incident note. |
+| `--fresh` | Capture one fresh bounded sample before rendering. |
+
+Examples:
+
+```text
+!profilerplusadmin webhook resource tick --title "Peak check" --note "After event start" --fresh
+!profilerplusadmin webhook resource report --minutes 60 --title "Hourly health" --note "Post-update review"
+!profilerplusadmin webhook resource grid 1 --title "Top suspect" --note "Investigate active tools"
+!profilerplusadmin webhook resource why 1 --note "Pressure breakdown for ticket 184"
+!profilerplusadmin webhook resource player "Player Name" --note "Owner workload review"
+!profilerplusadmin webhook resource physics --count 10 --title "Physics hotspots"
+!profilerplusadmin webhook resource entities --fresh --note "Cleanup decision"
+```
+
+`--ticks` is intentionally rejected: Profiler+ does not patch the Space Engineers game loop or pretend it has a direct tick counter. Use `--minutes N` for retained history or `--fresh` for one current sample.
 ## Moderator commands
 
 | Command | Purpose |

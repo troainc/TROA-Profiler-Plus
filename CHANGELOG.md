@@ -1,5 +1,11 @@
 # TROA Profiler+ public changelog
 
+## v1.0.0-alpha.21
+
+- Documents customizable resource webhooks with trailing minutes, count, title, note, and fresh-sample controls.
+- Documents the supported grid, player, entity, physics, timeline, tick, fleet, network, and health resource panels.
+
+
 ## v1.0.0-alpha.20
 
 - Releases the tested saved-command-reference, tick, and direct webhook documentation as alpha.20.
