@@ -24,6 +24,8 @@ Copy [TROA-ProfilerPlus.cfg.example](TROA-ProfilerPlus.cfg.example) only as a st
 
 ## Common commands
 
+See the complete [command reference](COMMANDS.md) for every moderator and administrator command, arguments, permissions, and Discord controls.
+
 - `!profilerplus status` — current server-health panel.
 - `!profilerplus report 60` — rolling report.
 - `!profilerplus topgrids 10`, `grid <rank|name|id>`, `why <grid>` — estimated grid-pressure evidence.
