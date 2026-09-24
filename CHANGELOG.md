@@ -1,5 +1,11 @@
 # TROA Profiler+ public changelog
 
+## v1.0.0-alpha.20
+
+- Releases the tested saved-command-reference, tick, and direct webhook documentation as alpha.20.
+- Public repository remains documentation-only; obtain the private operator-approved ZIP separately.
+
+
 ## v1.0.0-alpha.19
 
 ### Reusable operational command references
