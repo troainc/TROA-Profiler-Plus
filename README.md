@@ -4,7 +4,7 @@ TROA Profiler+ is a headless Torch performance-diagnostics plugin for Space Engi
 
 ## Current public status
 
-The current documented build is **v1.0.0-alpha.21**. This repository intentionally contains only public operator documentation, a credential-free configuration example, and GitHub issue metadata. Source code and unverified binaries are not published here.
+The current documented build is **v1.0.0-alpha.21**. This repository provides operator documentation, a credential-free configuration example, and GitHub issue metadata.
 
 ## Release ZIP distribution and proprietary technology
 
