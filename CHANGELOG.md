@@ -1,5 +1,20 @@
 # TROA Profiler+ public changelog
 
+## v1.0.0-alpha.19
+
+### Reusable operational command references
+
+- Adds local administrator-managed saved command lines: command save, command list, command show, and command remove.
+- Saved lines are bounded, persist in local configuration, and are never executed automatically; normal Torch permissions still apply when an operator reuses one.
+- Adds !profilerplusadmin webhook command <name> to post a chosen copy-ready reference as a Discord embed.
+
+### Command and Discord coverage
+
+- Adds !profilerplus tick to the in-game command menu, showing derived TPS from measured SimSpeed without claiming a direct engine tick counter.
+- Adds direct !profilerplusadmin webhook tick and !profilerplusadmin webhook why <rank|name|entityId> embeds.
+- Expands COMMANDS.md with all command families, privacy boundaries, and ready-to-save grid, player, entity, physics, and tick workflows.
+
+
 ## v1.0.0-alpha.18
 
 ### Regression comparison
