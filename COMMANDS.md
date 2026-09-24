@@ -7,7 +7,7 @@ Commands run in in-game chat or the Torch console. `!profilerplus` commands are 
 | Command | Purpose |
 |---|---|
 | `!profilerplus help` | Show the command menu. |
-| `!profilerplus status` | Show current health, SimSpeed, process resources, pressure indicators, and world counts. |
+| `!profilerplus status` | Show current health, SimSpeed, derived TPS (SimSpeed × 60), process resources, pressure indicators, and world counts. |
 | `!profilerplus snapshot` | Capture and display a fresh sample. |
 | `!profilerplus report [minutes]` | Show a rolling health report. |
 | `!profilerplus topgrids [count]` | Rank sampled grids by estimated pressure. |
@@ -31,8 +31,8 @@ Commands run in in-game chat or the Torch console. `!profilerplus` commands are 
 | `!profilerplus components` | Show opt-in loaded managed-assembly inventory for update correlation. It is not CPU attribution. |
 | `!profilerplus fleet` | Show sanitized shared-directory fleet summaries when fleet view is configured. |
 | `!profilerplus overhead` | Show profiler collection overhead and Discord queue depth. |
-| `!profilerplus export [minutes]` | Write rolling history to a local CSV export. Administrator permission is required. |
-| `!profilerplus data` | Show the local profiler data directory. Administrator permission is required. |
+| `!profilerplus export [minutes]` | Write rolling history to a local CSV export. Administrator permission is required. When command mirroring is enabled, Discord receives a safe status only, never the local path. |
+| `!profilerplus data` | Show the local profiler data directory. Administrator permission is required. When command mirroring is enabled, Discord receives a safe status only, never the local path. |
 
 ## Administrator service controls
 
