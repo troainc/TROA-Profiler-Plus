@@ -81,6 +81,8 @@
   <!-- Writes TROA-ProfilerPlusData/prometheus.prom for external collectors. No HTTP listener is opened. -->
   <!-- Opt-in aggregate-only replication counters. No endpoints, IP addresses, or packet inspection. -->
   <EnableNetworkHealthInstrumentation>false</EnableNetworkHealthInstrumentation>
+  <!-- SENSITIVE: local administrator endpoint display only. Disabled by default; never persisted, exported, bundled, or sent to Discord. -->
+  <EnableSensitiveClientNetworkDiagnostics>false</EnableSensitiveClientNetworkDiagnostics>
   <!-- Opt-in loaded assembly inventory only; it does not measure per-component CPU or update-handler cost. -->
   <EnableComponentInventory>false</EnableComponentInventory>
   <EnablePrometheusExport>true</EnablePrometheusExport>
@@ -111,4 +113,15 @@
   <PhysicsAssumedFrameBudgetMs>5.0</PhysicsAssumedFrameBudgetMs>
   <!-- Opt-in real per-cluster timing. Reserved: this estimate-only release has no timing probe, so it fails closed to estimates. -->
   <EnablePhysicsClusterTiming>false</EnablePhysicsClusterTiming>
+  <!-- Optional persistent copy-ready command lines. Save/manage them in game with !profilerplusadmin command save|list|show|remove. Never auto-executed. -->
+  <SavedCommandReferences>
+    <SavedCommandReference>
+      <Name>DailyHealth</Name>
+      <Command>!profilerplus report 60</Command>
+    </SavedCommandReference>
+    <SavedCommandReference>
+      <Name>TopGrid</Name>
+      <Command>!profilerplus grid 1 detailed</Command>
+    </SavedCommandReference>
+  </SavedCommandReferences>
 </ProfilerPlusConfig>
