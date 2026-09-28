@@ -2,6 +2,8 @@
 
 ## v1.0.0-alpha.21
 
+- Updates the complete public config example with the opt-in `EnableSensitiveClientNetworkDiagnostics` setting; it remains disabled by default and local-only.
+
 - Clarifies the distribution and proprietary-source policy: validated ZIPs may be provided for server operation, but source code and TROA internal frameworks are not released.
 
 
