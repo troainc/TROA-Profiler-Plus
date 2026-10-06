@@ -59,3 +59,5 @@ The plugin writes local history, snapshots, incidents, exports, support bundles,
 Profiler+ reports measured values where safe APIs expose them and labels derived or estimated indicators. It does not claim exact per-grid CPU, per-cluster physics time, mod CPU, script CPU, conveyor CPU, or causation. The optional real physics timing probe is disabled by default and fails closed after incompatible game updates.
 
 For release-specific changes, see [CHANGELOG.md](CHANGELOG.md). For support, use the issue template and include redacted logs or a sanitized support bundle.
+
+See the [public roadmap](ROADMAP.md) for measurement-quality, incident-analysis, performance, privacy, and integration priorities.
