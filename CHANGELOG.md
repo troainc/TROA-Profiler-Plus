@@ -1,5 +1,10 @@
 # TROA Profiler+ public changelog
 
+## Documentation update - 2026-10-06
+
+- Added `ROADMAP.md` with public-safe priorities for metric evidence, sampling overhead, incident interpretation, physics timing validation, and operator integrations.
+- Linked the roadmap from the README. No source, configuration, or binary package was added.
+
 ## v1.0.0-alpha.21
 
 - Updates the complete public config example with the opt-in `EnableSensitiveClientNetworkDiagnostics` setting; it remains disabled by default and local-only.
