@@ -1,3 +1,8 @@
+## Public operator documentation expansion - 2026-10-06
+
+- Added a detailed operator guide and documentation index covering installation, sampling, diagnostics, incidents, output integrations, privacy, and limitations.
+- Linked the guide from the README. No source or binary package was added.
+
 # TROA Profiler+ public changelog
 
 ## Documentation update - 2026-10-06

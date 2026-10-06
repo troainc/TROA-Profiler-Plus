@@ -61,3 +61,8 @@ Profiler+ reports measured values where safe APIs expose them and labels derived
 For release-specific changes, see [CHANGELOG.md](CHANGELOG.md). For support, use the issue template and include redacted logs or a sanitized support bundle.
 
 See the [public roadmap](ROADMAP.md) for measurement-quality, incident-analysis, performance, privacy, and integration priorities.
+
+
+## Documentation
+
+Use the [documentation index](docs/README.md) and [operator guide](docs/USER_GUIDE.md) for setup, command workflows, result interpretation, exports, incidents, privacy, and troubleshooting.
