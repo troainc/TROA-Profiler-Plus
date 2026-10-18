@@ -1,9 +1,8 @@
-## Unreleased — Cleaner+ isolation-report handoff (candidate for v1.0.0-alpha.23)
+## v1.0.0-alpha.23
 
-- During active low-SimSpeed incidents, Profiler+ can send up to three estimated grid suspects and their incident evidence to Cleaner+ for operator review.
+- During active low-SimSpeed incidents, Profiler+ sends up to three estimated grid suspects and their incident evidence to Cleaner+ for operator review.
 - Profiler+ is diagnostic only in this workflow: it does not freeze, remove, or otherwise mutate grids. Cleaner+ owns the persistent five-minute review, approve/dismiss actions, protected quarantine, and restore workflow.
 - Suspect rankings represent estimated correlation, not proof of causation. The Cleaner+ bridge is optional and fails soft when Cleaner+ is unavailable.
-- This is unreleased candidate behavior. The public repository remains documentation-only; obtain the separately validated operator package before using it.
 
 ## 2026-10-09 — Bifrost Plugin Panel operator guide
 
