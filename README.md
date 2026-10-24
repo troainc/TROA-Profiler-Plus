@@ -6,11 +6,15 @@ TROA Profiler+ is a headless Torch performance-diagnostics plugin for Space Engi
 
 ## Current public status
 
-The current documented build is **v1.0.0-alpha.21**. This repository provides operator documentation, a credential-free configuration example, and GitHub issue metadata. The alpha.21 example includes the disabled-by-default `EnableSensitiveClientNetworkDiagnostics` option; it must be explicitly enabled and stays local-only.
+The current published build is **v1.0.0-alpha.23**. This repository provides operator documentation, a credential-free configuration example, and GitHub issue metadata. The alpha.21 example includes the disabled-by-default `EnableSensitiveClientNetworkDiagnostics` option; it must be explicitly enabled and stays local-only.
+
+### Security fixes
+
+The current published Profiler+ package includes the security fixes released for this plugin. Keep installations on the latest approved package; older packages do not include fixes added in later releases. [Open the Profiler+ releases](https://github.com/troainc/TROA-Profiler-Plus/releases) to identify the current package and its version-specific notes.
 
 ### Unreleased development note
 
-Profiler+ has candidate SimSpeed response changes under development: a `0.90` degraded threshold, `0.65` critical threshold, `0.93` recovery threshold, sustained low-speed incidents, and explicit unavailable-reading state. They are not in the documented alpha.21 ZIP. The candidate requires a build against the Torch/Space Engineers assemblies and live test-server validation before release; see the [changelog](CHANGELOG.md).
+Profiler+ has candidate SimSpeed response changes under development: a `0.90` degraded threshold, `0.65` critical threshold, `0.93` recovery threshold, sustained low-speed incidents, and explicit unavailable-reading state. They are not in the published alpha.23 ZIP. The candidate requires a build against the Torch/Space Engineers assemblies and live test-server validation before release; see the [changelog](CHANGELOG.md).
 
 ## Release ZIP distribution and proprietary technology
 
