@@ -16,11 +16,11 @@
 
 # TROA Profiler+ public changelog
 
-## v1.0.0-alpha.24 candidate — SimSpeed response (source archive only; not an installable release)
+## v1.0.0-alpha.24 candidate — SimSpeed response (ZIP available; test-server validation pending)
 
 - Candidate source changes use `MyPhysics.SimulationRatio` and distinguish unavailable readings from a real zero value.
 - Candidate defaults set the degraded threshold to `0.90`, critical threshold to `0.65`, and recovery threshold to `0.93` with three healthy samples required. Speed-only incidents use sustained low samples.
-- Candidate snapshot, Prometheus, CSV, and flight-recorder output includes reading availability. These changes are not part of the currently published alpha.23 release ZIP and still require a Torch server build and runtime validation.
+- Candidate snapshot, Prometheus, CSV, and flight-recorder output includes reading availability. The candidate ZIP is in `releases/`; live Torch test-server validation is still required before tagging a release.
 
 ## Documentation update - 2026-10-06
 
