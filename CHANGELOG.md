@@ -16,7 +16,7 @@
 
 # TROA Profiler+ public changelog
 
-## Unreleased development — SimSpeed response
+## v1.0.0-alpha.24 candidate — SimSpeed response (source archive only; not an installable release)
 
 - Candidate source changes use `MyPhysics.SimulationRatio` and distinguish unavailable readings from a real zero value.
 - Candidate defaults set the degraded threshold to `0.90`, critical threshold to `0.65`, and recovery threshold to `0.93` with three healthy samples required. Speed-only incidents use sustained low samples.
