@@ -8,6 +8,10 @@ TROA Profiler+ is a headless Torch performance-diagnostics plugin for Space Engi
 
 The current documented build is **v1.0.0-alpha.21**. This repository provides operator documentation, a credential-free configuration example, and GitHub issue metadata. The alpha.21 example includes the disabled-by-default `EnableSensitiveClientNetworkDiagnostics` option; it must be explicitly enabled and stays local-only.
 
+### Unreleased development note
+
+Profiler+ has candidate SimSpeed response changes under development: a `0.90` degraded threshold, `0.65` critical threshold, `0.93` recovery threshold, sustained low-speed incidents, and explicit unavailable-reading state. They are not in the documented alpha.21 ZIP. The candidate requires a build against the Torch/Space Engineers assemblies and live test-server validation before release; see the [changelog](CHANGELOG.md).
+
 ## Release ZIP distribution and proprietary technology
 
 TROA may provide validated, versioned Profiler+ release ZIPs to server operators through approved distribution channels. These ZIPs are binary release packages for installation and operation only; they are not source-code releases.
