@@ -14,7 +14,7 @@ The current published Profiler+ package includes the security fixes released for
 
 ### Unreleased development note
 
-Profiler+ has SimSpeed response changes in the **alpha.24 candidate source archive**: a `0.90` degraded threshold, `0.65` critical threshold, `0.93` recovery threshold, sustained low-speed incidents, and explicit unavailable-reading state. The published alpha.23 ZIP remains the latest installable package; alpha.24 still needs a build against the Torch/Space Engineers assemblies and live test-server validation before release. See the [changelog](CHANGELOG.md).
+Profiler+ has SimSpeed response changes in the **alpha.24 candidate ZIP**: a `0.90` degraded threshold, `0.65` critical threshold, `0.93` recovery threshold, sustained low-speed incidents, and explicit unavailable-reading state. The ZIP is available at [`releases/TROA-ProfilerPlus-v1.0.0-alpha.24.zip`](releases/TROA-ProfilerPlus-v1.0.0-alpha.24.zip). The latest tagged GitHub release is still alpha.23; alpha.24 needs live test-server validation before it is promoted to a release. See the [changelog](CHANGELOG.md).
 
 ## Release ZIP distribution and proprietary technology
 
