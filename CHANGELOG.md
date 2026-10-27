@@ -1,3 +1,11 @@
+## v1.0.0-alpha.25 � candidate ZIP available; live testing pending
+
+- Recovery defaults to one valid healthy sample at or above 0.93; existing saved settings remain effective.
+- Reports SimSpeed recovery independently when other performance warnings keep an incident open.
+- Missing/invalid readings break consecutive confirmation runs without falsely declaring recovery.
+- Prevents overlapping manual/timer captures and continues recovery evaluation after storage failures.
+- Built successfully with zero warnings/errors. Binary ZIP is under releases/; live server validation remains with the operator.
+
 ## v1.0.0-alpha.23
 
 - During active low-SimSpeed incidents, Profiler+ sends up to three estimated grid suspects and their incident evidence to Cleaner+ for operator review.
@@ -16,11 +24,11 @@
 
 # TROA Profiler+ public changelog
 
-## Unreleased development — SimSpeed response
+## v1.0.0-alpha.24 candidate — SimSpeed response (ZIP available; test-server validation pending)
 
 - Candidate source changes use `MyPhysics.SimulationRatio` and distinguish unavailable readings from a real zero value.
 - Candidate defaults set the degraded threshold to `0.90`, critical threshold to `0.65`, and recovery threshold to `0.93` with three healthy samples required. Speed-only incidents use sustained low samples.
-- Candidate snapshot, Prometheus, CSV, and flight-recorder output includes reading availability. These changes are not part of the currently documented alpha.21 release ZIP and still require a Torch server build and runtime validation.
+- Candidate snapshot, Prometheus, CSV, and flight-recorder output includes reading availability. The candidate ZIP is in `releases/`; live Torch test-server validation is still required before tagging a release.
 
 ## Documentation update - 2026-10-06
 
