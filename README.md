@@ -12,7 +12,7 @@ The current published build is **v1.0.0-alpha.23**. This repository provides ope
 
 The current published Profiler+ package includes the security fixes released for this plugin. Keep installations on the latest approved package; older packages do not include fixes added in later releases. [Open the Profiler+ releases](https://github.com/troainc/TROA-Profiler-Plus/releases) to identify the current package and its version-specific notes.
 
-### Next version: v1.0.0-alpha.25 — available for testing
+### Next version: v1.0.0-alpha.25 ï¿½ available for testing
 
 Download [`TROA-ProfilerPlus-v1.0.0-alpha.25.zip`](releases/TROA-ProfilerPlus-v1.0.0-alpha.25.zip). The candidate built successfully against Torch and Space Engineers assemblies; live server testing is pending. It is not yet promoted to the latest tagged release.
 
@@ -74,7 +74,7 @@ The plugin writes local history, snapshots, incidents, exports, support bundles,
 
 Profiler+ reports measured values where safe APIs expose them and labels derived or estimated indicators. It does not claim exact per-grid CPU, per-cluster physics time, mod CPU, script CPU, conveyor CPU, or causation. The optional real physics timing probe is disabled by default and fails closed after incompatible game updates.
 
-For release-specific changes, see [CHANGELOG.md](CHANGELOG.md). For support, use the issue template and include redacted logs or a sanitized support bundle.
+For release-specific changes, see [alpha.25 release notes](releases/v1.0.0-alpha.25.md). For support, use the issue template and include redacted logs or a sanitized support bundle.
 
 See the [public roadmap](ROADMAP.md) for measurement-quality, incident-analysis, performance, privacy, and integration priorities.
 
