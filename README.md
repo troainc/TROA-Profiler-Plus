@@ -12,15 +12,11 @@ The current published build is **v1.0.0-alpha.23**. This repository provides ope
 
 The current published Profiler+ package includes the security fixes released for this plugin. Keep installations on the latest approved package; older packages do not include fixes added in later releases. [Open the Profiler+ releases](https://github.com/troainc/TROA-Profiler-Plus/releases) to identify the current package and its version-specific notes.
 
-### Next version: v1.0.0-alpha.25 � available for testing
+### Next version: v1.0.0-alpha.26 - available for testing
 
-Download [`TROA-ProfilerPlus-v1.0.0-alpha.25.zip`](releases/TROA-ProfilerPlus-v1.0.0-alpha.25.zip). The candidate built successfully against Torch and Space Engineers assemblies; live server testing is pending. It is not yet promoted to the latest tagged release.
+[Download TROA-ProfilerPlus-v1.0.0-alpha.26.zip](releases/TROA-ProfilerPlus-v1.0.0-alpha.26.zip) | [Release notes](releases/v1.0.0-alpha.26.md) | [Checksum](releases/TROA-ProfilerPlus-v1.0.0-alpha.26.zip.sha256)
 
-Recovery now defaults to one valid sample at or above 0.93. SimSpeed recovery can report while other performance warnings remain active. Existing XML configs retain saved values: set `SimulationRecoverySamples` to `1` and run `!profilerplusadmin reload`. Recovery observation normally takes up to the configured sample interval, plus processing and Discord delivery time. Profiler+ reports performance; restoring actual speed requires reducing the workload causing the dip.
-
-SHA-256: `CAEF625BD09E3FF5869F799A79FE88814CB2D5CCA6F70ACDD679CD4FF2077401`.
-
-The candidate also protects manual/timer sampling from overlap and keeps incident evaluation running after storage failures. The [candidate release notes](releases/v1.0.0-alpha.25.md) include configuration and installation details. Earlier ZIPs do not contain these fixes.
+Reduces detailed inspection during low SimSpeed and moves sampled-data analysis outside the blocking game-thread callback for regular timer captures. Includes the alpha.25 recovery notification fixes. Build completed; live server testing is pending. Profiler+ does not automatically remove workload. See the [changelog](CHANGELOG.md).
 
 ## Release ZIP distribution and proprietary technology
 

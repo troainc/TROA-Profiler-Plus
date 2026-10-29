@@ -19,3 +19,7 @@ The current documented build is v1.0.0-alpha.21. Profiler+ samples server health
 Profiler+ remains read-only. Network endpoints and sensitive client details remain local-only and must never appear in Discord output or shared fleet data. New measurements are not described as supported until their accuracy, overhead, privacy, and compatibility are validated.
 
 This roadmap is a product direction document; it makes no release-date commitments.
+
+## 2026-10-28 stability candidate
+
+v1.0.0-alpha.26 is available under releases/ with version-specific notes. Live server validation is pending.
