@@ -2,6 +2,32 @@
 
 Commands run in in-game chat or the Torch console. `!profilerplus` commands are read-only moderator diagnostics unless noted. `!profilerplusadmin` commands require an administrator promote level. Estimated and correlated values are diagnostic evidence, not proof of causation.
 
+## Alpha.26 update: existing commands, reduced overhead
+
+Alpha.26 adds no new commands. It moves sampled-data analysis outside the blocking game-thread callback for regular timer samples and reduces detailed block inspection during low SimSpeed. Alpha.25 recovery reporting fixes are included.
+
+| Existing command | Use after updating |
+|---|---|
+| `!profilerplus status` | Review the latest SimSpeed and health sample. |
+| `!profilerplus overhead` | Review collection/analysis overhead and skipped samples. |
+| `!profilerplus incidents 10` | Review recent retained incidents. |
+| `!profilerplus topgrids 10` | Review grids ranked by estimated pressure. |
+| `!profilerplus physics 5` | Review estimated physics clusters. |
+| `!profilerplus entities` | Review sampled entity and floating-object counts. |
+| `!profilerplusadmin reload` | Apply configuration edits; this does not load a replacement plugin DLL. |
+| `!profilerplusadmin webhook status` | Review Discord delivery configuration and queue state. |
+
+The new settings are XML configuration options, not commands:
+
+```xml
+<LowSimulationDetailedAnalysisSeconds>60</LowSimulationDetailedAnalysisSeconds>
+<MaximumDetailedGridsWhileLow>10</MaximumDetailedGridsWhileLow>
+```
+
+Below the slow-speed threshold, these defaults limit detailed block inspection to 10 grids per 60-second detail interval. Inventory sampling keeps its regular cadence; cached detail estimates may be older. For existing configs, `<SimulationRecoverySamples>1</SimulationRecoverySamples>` requests recovery confirmation on the first valid sample at or above the recovery threshold (default 0.93). Discord recovery alerts also require enabled webhook delivery and `DiscordRecoveryAlertsEnabled=true`.
+
+Profiler+ diagnoses and reports; Cleaner+ owns the optional cleanup/reversible concealment actions. The screenshot's 0.95 reading does not by itself meet the default 0.90 recovery-sweep trigger.
+
 ## Webhook delivery
 
 Set `EnableCommandWebhookMirror=true` or run `!profilerplusadmin webhook mirror on` to mirror every ordinary command panel to Discord. Use a dedicated `webhook <report>` command when an operator needs an on-demand embed. Local filesystem paths from `export` and `data` are never sent to Discord; those commands mirror only safe status panels. `network clients` is intentionally local-only because it can expose client IP addresses.
